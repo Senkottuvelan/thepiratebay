@@ -124,7 +124,7 @@ def search_torrents(term=None, page=0):
     sort = request.args.get('sort')
     sort_arg = sort_filters[request.args.get('sort')] if sort in sort_filters else ''
 
-    url = BASE_URL + 'search/' + str(term) + '/' + str(page) + '/' + str(sort_arg)
+    url = BASE_URL + 's/?q=' + str(term) + '&category=0&page=0&orderby=99'
     return jsonify(parse_page(url)), 200
 
 
