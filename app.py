@@ -15,7 +15,7 @@ APP = Flask(__name__)
 CORS(APP)
 EMPTY_LIST = []
 
-BASE_URL = os.getenv('BASE_URL', 'https://boatmy.top/')
+BASE_URL = os.getenv('BASE_URL', 'https://tpbgreen.link/')
 JSONIFY_PRETTYPRINT_REGULAR = True
 
 # Translation table for sorting filters
