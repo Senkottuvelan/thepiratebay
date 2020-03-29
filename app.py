@@ -15,7 +15,7 @@ APP = Flask(__name__)
 CORS(APP)
 EMPTY_LIST = []
 
-BASE_URL = os.getenv('BASE_URL', 'https://tpbgreen.link/')
+BASE_URL = os.getenv('BASE_URL', 'https://thepiratebay.org/')
 JSONIFY_PRETTYPRINT_REGULAR = True
 
 # Translation table for sorting filters
@@ -124,7 +124,7 @@ def search_torrents(term=None, page=0):
     sort = request.args.get('sort')
     sort_arg = sort_filters[request.args.get('sort')] if sort in sort_filters else ''
 
-    url = BASE_URL + 's/?q=' + str(term) + '&category=0&page=0&orderby=99'
+    url = BASE_URL + 'search/' + str(term) + '/' + str(page) + '/' + str(sort_arg)
     return jsonify(parse_page(url)), 200
 
 
