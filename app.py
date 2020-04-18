@@ -15,7 +15,7 @@ APP = Flask(__name__)
 CORS(APP)
 EMPTY_LIST = []
 
-BASE_URL = os.getenv('BASE_URL', 'https://thepiratebay.org/')
+BASE_URL = os.getenv('BASE_URL', 'https://thepiratebay.org/index.html')
 JSONIFY_PRETTYPRINT_REGULAR = True
 
 # Translation table for sorting filters
@@ -135,8 +135,8 @@ def parse_page(url, sort=None):
     data = requests.get(url).text
     soup = BeautifulSoup(data, 'lxml')
     table_present = soup.find('table', {'id': 'searchResult'})
-    if table_present is None:
-        return EMPTY_LIST
+    #if table_present is None:
+    #   return EMPTY_LIST
    # titles = parse_titles(soup)
     links = parse_links(soup)
    # magnets = parse_magnet_links(soup)
@@ -162,8 +162,8 @@ def parse_links(soup):
     '''
     Returns list of links of torrents from soup
     '''
-    links = soup.find_all('a', class_='detLink', href=True)
-    links[:] = [link['href'] for link in links]
-    return links
+    links = soup.find('ol',{'id':'torrents'}).find('li',{'id':'st'}).find('span',{'class':'item-icons'})
+    #links[:] = [link['href'] for link in links]
+    return links.findChild()
 
 
